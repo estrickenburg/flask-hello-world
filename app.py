@@ -15,7 +15,7 @@ def testing():
 
 @app.route('/db_create')
 def creating():
-    conn = psycopg2.connect("postgres://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a/basketball_db")
+    conn = psycopg2.connect("postgresql://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
     cur = conn.cursor()
     cur.execute('''
         CREATE TABLE IF NOT EXISTS Basketball (
@@ -32,7 +32,7 @@ def creating():
 
 @app.route('/db_insert')
 def inserting():
-    conn = psycopg2.connect("postgres://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a/basketball_db")
+    conn = psycopg2.connect("postgresql://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
     cur = conn.cursor()
     cur.execute('''
         INSERT INTO Basketball (First, Last, City, Name, Number)
@@ -48,7 +48,7 @@ def inserting():
 
 @app.route('/db_drop')
 def dropping():
-    conn = psycopg2.connect("postgres://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a/basketball_db")
+    conn = psycopg2.connect("postgresql://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
     cur = conn.cursor()
     cur.execute('''
         DROP TABLE Basketball;
@@ -59,7 +59,7 @@ def dropping():
 
 @app.route('/db_select')
 def selecting():
-    conn = psycopg2.connect("postgres://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a/basketball_db")
+    conn = psycopg2.connect("postgresql://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
     cur = conn.cursor()
     cur.execute('''
         SELECT * FROM Basketball;
