@@ -9,6 +9,6 @@ def hello_world():
 
 @app.route('/db_test')
 def testing():
-    conn = psycopg2.connect("postgres://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
+    conn = psycopg2.connect("postgresql://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
     conn.close()
     return "Database Connection Successful"
