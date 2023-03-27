@@ -1,5 +1,6 @@
 from flask import Flask
 import psycopg2
+import os
 
 app = Flask(__name__)
 
@@ -41,10 +42,29 @@ def inserting():
         ('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
         ('Nikola', 'Jokic', 'Denver', 'Nuggets', 15),
         ('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2);
-        ''')
+    ''')
     conn.commit()
     conn.close()
     return "Basketball Table Successfully Populated"
+
+@app.route('/db_select')
+def selecting():
+    conn = psycopg2.connect("postgresql://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT * FROM Basketball;
+        ''')
+    records = cur.fetchall()
+    conn.close()
+    response_string=""
+    response_string+="<table>"
+    for player in records:
+        response_string+="<tr>"
+        for info in player:
+            response_string+="<td>{}</td>".format(info)
+        response_string+="</tr>"
+    response_string+="</table>"
+    return response_string
 
 # @app.route('/db_drop')
 # def dropping():
@@ -57,21 +77,3 @@ def inserting():
 #     conn.close()
 #     return "Basketball Table Successfully Dropped"
 
-# @app.route('/db_select')
-# def selecting():
-#     conn = psycopg2.connect("postgresql://basketball_db_user:2AotULLsHGewiAHNHCxZRgoU1OafHJpI@dpg-cgfku182qv28tc05hmj0-a.ohio-postgres.render.com/basketball_db")
-#     cur = conn.cursor()
-#     cur.execute('''
-#         SELECT * FROM Basketball;
-#         ''')
-#     records = cur.fetchall()
-#     conn.close()
-#     response_string=""
-#     response_string+="<table>"
-#     for player in records:
-#         response_string+="<tr>"
-#         for info in player:
-#             response_string+="<td>{}</td>".format(info)
-#         response_string+="</tr>"
-#     response_string+="</table>"
-#     return response_string
